@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const sequelize = require('./db')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5050
 const models = require('./models/models')
 const app = express()
 const cors = require('cors')
@@ -17,7 +17,6 @@ app.use('/api', router)
 
 //
 app.use(errorHandler)
-
 const start = async () => {
     try {
         await sequelize.authenticate()
