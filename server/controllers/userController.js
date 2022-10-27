@@ -6,8 +6,7 @@ const {User} = require('../models/models')
 const generateJwt = (id, email, role) => {
     return jwt.sign(
         {id: id, email, role},
-        process.env.SECRET_KEY,
-        {expiresIn: '24h'}
+        process.env.SECRET_KEY
     )
 }
 
@@ -51,16 +50,10 @@ class UserController {
     async check(req, res, next) {
 
     }
+
     async getAll(req,res){
         const users = await User.findAll()
         return res.json(users)
-    }
-    async getOne(req, res) {
-        const {id} = req.params
-        const user = await User.findOne(
-            {where: {id}},
-        )
-        return res.json(user)
     }
 }
 

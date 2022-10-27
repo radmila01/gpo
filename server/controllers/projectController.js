@@ -15,13 +15,7 @@ class projectController {
         const projects = await Project.findAll()
       return res.json(projects)
   }
-    async getOne(req, res) {
-        const {id} = req.params
-        const project = await Project.findOne(
-            {where: {id}},
-        )
-        return res.json(project)
-    }
+
 }
 
 module.exports = new projectController()
