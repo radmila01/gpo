@@ -16,13 +16,9 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
-<<<<<<< HEAD
-    "sequelize": "^6.25.3"
-=======
-    "sequelize": "^6.21.6",
+    "sequelize": "^6.25.3",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
->>>>>>> c2c0548ba859aec9f55436591864ce9297777cb1
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

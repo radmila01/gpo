@@ -67,6 +67,7 @@ router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.get('/auth', userController.check)
 router.get('/getAll',userController.getAll)
+router.get('/:id',userController.getOne)
 
 
 module.exports = router
