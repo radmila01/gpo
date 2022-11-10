@@ -7,76 +7,97 @@ const projectController = require('../controllers/projectController')
  * paths:
  *   /project/{projectId}:
  *     get:
- *       summary: Get a project by ID
+ *       summary: Get a user by ID
  *       tags: [Projects]
  *       parameters:
  *         ...
- *       "responses":
- *           "200": {
- *             "description": "OK",
- *             "content": {
- *               "document": {
- *                 "schema": {
- *                   "type": "string",
- *                   "example": "some text"
- *                 }
- *               }
- *             }
- *           }
- *
- *           description: A single project.
+ *       responses:
+ *         '200':
+ *           description: A single user.
  *           content:
  *             application/json:
  *               schema:
- *                 type: object
- *                 properties:
- *                   id:
- *                     type: integer
- *                     description: id
- *                   name:
- *                     type: string
- *                     description: name
- *
+ *                 $ref: '#/components/schemas/Project'
+ *         '400':
+ *              description: Invalid ID value
+ *         '404':
+ *              description: User not found
  *
  *   /project:
  *     get:
  *       summary: Get all projects
  *       tags: [Projects]
- *       "responses":
- *           "200": {
- *             "description": "OK",
- *             "content": {
- *               "document": {
- *                 "schema": {
- *                   "type": "string",
- *                   "example": "some text"
- *                 }
- *               }
- *             }
- *           }
- *
- *           description: A list of projects.
+ *       operationId: getAll
+ *       responses:
+ *         '200':
+ *           description: A list of users.
  *           content:
  *             application/json:
  *               schema:
  *                 type: array
  *                 items:
- *                   type: object
- *                   properties:
- *                     id:
- *                     type: integer
- *                     description: id
- *                   name:
- *                     type: string
- *                     description: name
+ *                   $ref: '#/components/schemas/Project'
+ *
+ *     post:
+ *       summary: Create a project
+ *       tags: [Projects]
+ *       operationId: create
+ *       requestBody:
+ *         description: Create a new project
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Project'
+ *           application/xml:
+ *             schema:
+ *               $ref: '#/components/schemas/Project'
+ *           application/x-www-form-urlencoded:
+ *             schema:
+ *               $ref: '#/components/schemas/Project'
+ *         required: true
+ *       responses:
+ *         '200':
+ *           description: OK
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/Project'
+ *             application/xml:
+ *               schema:
+ *                 $ref: '#/components/schemas/Project'
+ *         '405':
+ *           description: Invalid input
+ *
+ * components:
+ *   schemas:
+ *     Project:
+ *       type: object
+ *       properties:
+ *            id:
+ *              type: integer
+ *              description: id
+ *            name:
+ *              type: string
+ *              description: name
+ *            email:
+ *              type: string
+ *              description: email
+ *            role:
+ *              type: string
+ *              description: role
+ *            organization:
+ *              type: string
+ *              description: organization
+ *
  */
 
 /**
  * @swagger
  * tags:
  *   name: Projects
- *   description: The projects managing API
+ *   description: The users managing API
  */
+
 router.post('/', projectController.create)
 router.get('/getAll',projectController.getAll)
 router.get('/:id',projectController.getOne)

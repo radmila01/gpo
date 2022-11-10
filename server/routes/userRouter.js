@@ -5,7 +5,7 @@ const userController = require('../controllers/userController')
 /**
  * @swagger
  * paths:
- *   /users/{userId}:
+ *   /user/{userId}:
  *     get:
  *       summary: Get a user by ID
  *       tags: [Users]
@@ -18,11 +18,16 @@ const userController = require('../controllers/userController')
  *             application/json:
  *               schema:
  *                 $ref: '#/components/schemas/User'
+ *         '400':
+ *              description: Invalid ID value
+ *         '404':
+ *              description: User not found
  *
- *   /users:
+ *   /user:
  *     get:
  *       summary: Get all users
  *       tags: [Users]
+ *       operationId: getAll
  *       responses:
  *         '200':
  *           description: A list of users.
@@ -32,6 +37,67 @@ const userController = require('../controllers/userController')
  *                 type: array
  *                 items:
  *                   $ref: '#/components/schemas/User'
+ *
+ *     post:
+ *       summary: Registration
+ *       tags: [Users]
+ *       description: Registration
+ *       operationId: registration
+ *       requestBody:
+ *         description: Create a new User
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *           application/xml:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *           application/x-www-form-urlencoded:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *         required: true
+ *       responses:
+ *         '200':
+ *           description: Successful operation
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/User'
+ *             application/xml:
+ *               schema:
+ *                 $ref: '#/components/schemas/User'
+ *         '405':
+ *           description: Invalid input
+ *
+ * post:
+ *       summary: Login
+ *       tags: [Users]
+ *       description: Login
+ *       requestBody:
+ *         description: Login user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *           application/xml:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *           application/x-www-form-urlencoded:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *         required: true
+ *       responses:
+ *         '200':
+ *           description: Successful operation
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/User'
+ *             application/xml:
+ *               schema:
+ *                 $ref: '#/components/schemas/User'
+ *         '405':
+ *           description: Invalid input
  *
  * components:
  *   schemas:
